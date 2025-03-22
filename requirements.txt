@@ -4,4 +4,4 @@ numpy
 opencv-python
 pillow
 deepface
-sqlite3
+
