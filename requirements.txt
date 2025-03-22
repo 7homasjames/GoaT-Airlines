@@ -1,7 +1,11 @@
 fastapi
 uvicorn
+requests
+pydantic
+qrcode
 numpy
 opencv-python
-pillow
 deepface
+pillow
+
 
