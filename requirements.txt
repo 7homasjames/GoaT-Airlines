@@ -8,3 +8,4 @@ opencv-python
 deepface
 pillow
 tf-keras
+python-multipart
