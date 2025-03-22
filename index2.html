@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoaT Airlines - Flight Booking</title>
+    <link rel="stylesheet" href="style2.css">
+    <script src="app2.js" defer></script>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <button class="tab-btn active" onclick="showPage('welcome-page')">Home</button>
+        <button class="tab-btn" onclick="showPage('search-flight')">Search Flight</button>
+        <button class="tab-btn" onclick="showPage('select-seat')">Select Seat</button>
+        <button class="tab-btn" onclick="showPage('passenger-details')">Passenger Details</button>
+        <button class="tab-btn" onclick="showPage('boarding-pass')">Boarding Pass</button>
+        <button class="tab-btn" onclick="showPage('self-checkin')">Self Check-in</button>
+        <button class="tab-btn" onclick="showPage('conclusion')">Thank You</button>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content">
+
+        <!-- Welcome Page -->
+        <div id="welcome-page" class="page active">
+            <h1>Welcome to GoaT Airlines</h1>
+            <p>Experience world-class travel where luxury meets efficiency.</p>
+            
+            <div class="facilities">
+                <div class="facility">
+                    <h3>🌟 Premium Comfort</h3>
+                    <p>Enjoy spacious seats with extra legroom.</p>
+                </div>
+                <div class="facility">
+                    <h3>📶 Free High-Speed WiFi</h3>
+                    <p>Stay connected even at 35,000 feet.</p>
+                </div>
+                <div class="facility">
+                    <h3>🍽 Gourmet Cuisine</h3>
+                    <p>Delicious meals crafted by top chefs.</p>
+                </div>
+                <div class="facility">
+                    <h3>💼 Lounge Access</h3>
+                    <p>Relax in our exclusive lounges before your flight.</p>
+                </div>
+            </div>
+
+            <button class="next-btn" onclick="showPage('search-flight')">Explore Flights</button>
+        </div>
+
+        <!-- Flight Search Page -->
+        <div id="search-flight" class="page">
+            <h2>Search Flight</h2>
+            <div class="search-box">
+                <input type="text" id="from" placeholder="From">
+                <input type="text" id="to" placeholder="To">
+                <input type="date" id="flight-date">
+                <button class="search-btn">Search Flights</button>
+            </div>
+            <div id="flight-results">
+                <h3>Available Flights</h3>
+                <ul id="flights-list"></ul>
+            </div>
+            <button class="next-btn" onclick="showPage('select-seat')">Next</button>
+        </div>
+
+        <!-- Seat Selection Page -->
+        <div id="select-seat" class="page">
+            <h2>Select Your Seat</h2>
+            <div class="seat-map">
+                <div class="seat" data-seat="1A">1A</div>
+                <div class="seat" data-seat="1B">1B</div>
+                <div class="seat" data-seat="1C">1C</div>
+                <div class="seat" data-seat="1D">1D</div>
+                <div class="seat" data-seat="1E">1E</div>
+                <div class="seat" data-seat="1F">1F</div>
+            </div>
+            <p>Selected Seat: <span id="selected-seat">None</span></p>
+            <button class="next-btn" onclick="showPage('passenger-details')">Next</button>
+        </div>
+
+        <!-- Passenger Details Page -->
+        <div id="passenger-details" class="page">
+            <h2><i class="fas fa-id-badge icon"></i> Enter Passenger Details</h2>
+            
+            <form id="passenger-form" enctype="multipart/form-data">
+                <h3>Passenger Information</h3>
+                
+                <div class="input-group">
+                    <input type="text" id="passenger-first-name" placeholder="First Name *" required>
+                    <input type="text" id="passenger-last-name" placeholder="Last Name *" required>
+                </div>
+        
+                <input type="email" id="passenger-email" placeholder="Email Address *" required>
+        
+                <!-- Face Capture Section -->
+                <div class="face-capture">
+                    <p>Capture your face from different angles <i class="fas fa-info-circle"></i></p>
+                    <div class="image-preview">
+                        <img id="face-preview" src="face_cap.avif" alt="Face Capture Preview">
+                    </div>
+                    <button type="button" class="webcam-btn" id="open-webcam">
+                        <i class="fas fa-video"></i> WEBCAM
+                    </button>
+                    <input type="file" id="passenger-photo" name="file" style="display: none;" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Register Passenger</button>
+                
+        
+            <div id="qr-result"></div>
+            <button class="next-btn" onclick="showPage('passenger-details')">Next</button>
+        </div>
+        
+
+        <!-- Boarding Pass Page -->
+        <div id="boarding-pass" class="page">
+            <h2>Boarding Pass</h2>
+
+            <div class="boarding-pass-container">
+                <div class="boarding-pass">
+                    <div class="left">
+                        <h3>Boarding Pass (Web Check-In)</h3>
+                        <p><strong>Passenger:</strong> <span id="bp-name">Loading...</span></p>
+                        <p><strong>Flight:</strong> <span id="bp-flight">6E 6182</span></p>
+                        <p><strong>Seat:</strong> <span id="bp-seat">None</span></p>
+                        <div id="qrcode"></div>
+                    </div>
+                    <div class="right">
+                        <h3>Terminal <span id="bp-terminal">T1</span> ✈️</h3>
+                        <p><strong>Date:</strong> <span id="bp-date">Loading...</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="window.print()">Print Boarding Pass</button>
+        </div>
+
+        <!-- Self Check-in Page -->
+        <div id="self-checkin" class="page">
+            <h1>Self Check-in</h1>
+            <button class="verify-btn">Verify Passenger</button>
+        </div>
+
+        <!-- Conclusion Page -->
+        <div id="conclusion" class="page">
+            <h2>Thank You for Flying with GoaT Airlines! 🛫</h2>
+            <p>We appreciate your trust in us and hope you had a seamless experience.</p>
+            <p>Safe travels ahead!</p>
+            <button class="next-btn" onclick="showPage('welcome-page')">Back to Home</button>
+        </div>
+
+    </div>
+
+</body>
+</html>
